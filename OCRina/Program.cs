@@ -56,8 +56,7 @@ namespace OCRina
             restClient.Proxy.Credentials = CredentialCache.DefaultCredentials;
             restClient.ApplicationId = "OLopalus";
             restClient.Password = "ko1r3mHnGGMI3YdrSUCZc0MJ";
-            TextFieldProcessingSettings settings = new TextFieldProcessingSettings();            
-            //var sourceFile = @"C:\\wkspaces\\ABBYcloud\\Picture_samples\\English\\\Scanned_documents\Picture_010.tif";
+            TextFieldProcessingSettings settings = new TextFieldProcessingSettings();                        
             var sourceFile =  Path.Combine(Environment.CurrentDirectory, imageFiles.First()); // fix this to process multiple?
             var outputFilePath = Environment.CurrentDirectory + "\\output.xml";
 
@@ -95,6 +94,7 @@ namespace OCRina
                 return;
             }
 
+            // Parse Xml output file for extracted value
             XElement x = XElement.Load(outputFilePath);
             XNamespace xsi = "@link";
             var result = x.Element(xsi+"field").Element(xsi+"value").Value;
